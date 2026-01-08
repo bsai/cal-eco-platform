@@ -98,7 +98,6 @@ export const CHAINS: {
       pocketNetwork
         ? `https://eth-goerli.gateway.pokt.network/v1/lb/${pocketNetwork}`
         : "",
-      "https://goerli.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161",
     ].filter((url) => url !== ""),
     name: "Görli",
     nativeCurrency: ETH,
