@@ -14,6 +14,11 @@ import Profile from "./profile/Profile";
 import EditProfile from "./profile/EditProfile";
 import Fallback from "./Fallback";
 
+// a test component for error handling
+const TestError = () => {
+  throw new Error("This is a test error to check error boundary is working!");
+};
+
 const Layout = () => {
   return (
     <>
@@ -28,44 +33,46 @@ export function Routers() {
   return (
     <Routes>
       <Route element={<Layout />}>
-      <Route path="/prediction" element={<Dashboard />} />
-      <Route path="/dashboard" element={<ExchangeDashboard />} />
+        <Route path="/prediction" element={<Dashboard />} />
+        <Route path="/dashboard" element={<ExchangeDashboard />} />
 
-      <Route
-        path="/reset-password"
-        element={
-        <PublicRoutes>
-          <ResetPassword />
-        </PublicRoutes>
-        }
-      />
-      <Route
-        path="/google/login"
-        element={
-        <PrivateRoutes>
-          <GoogleLogin />
-        </PrivateRoutes>
-        }
-      />
-      <Route
-        path="/profile"
-        element={
-        <PrivateRoutes>
-          <Profile />
-        </PrivateRoutes>
-        }
-      />
-      <Route
-        path="/edit-profile"
-        element={
-        <PrivateRoutes>
-          <EditProfile />
-        </PrivateRoutes>
-        }
-      />
-      <Route path="/google/redirect" element={<GoogleRedirect />} />
-      <Route path="/" element={<Navigate to="/dashboard" />} />
-      <Route path="*" element={<Fallback />} />
+        <Route
+          path="/reset-password"
+          element={
+            <PublicRoutes>
+              <ResetPassword />
+            </PublicRoutes>
+          }
+        />
+        <Route
+          path="/google/login"
+          element={
+            <PrivateRoutes>
+              <GoogleLogin />
+            </PrivateRoutes>
+          }
+        />
+        <Route
+          path="/profile"
+          element={
+            <PrivateRoutes>
+              <Profile />
+            </PrivateRoutes>
+          }
+        />
+        <Route
+          path="/edit-profile"
+          element={
+            <PrivateRoutes>
+              <EditProfile />
+            </PrivateRoutes>
+          }
+        />
+        <Route path="/google/redirect" element={<GoogleRedirect />} />
+        {/* Test route for error handling - Remove after testing */}
+        <Route path="/test-error" element={<TestError />} />
+        <Route path="/" element={<Navigate to="/dashboard" />} />
+        <Route path="*" element={<Fallback />} />
       </Route>
     </Routes>
   );

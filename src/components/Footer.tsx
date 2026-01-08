@@ -113,6 +113,7 @@ const Papers = () => {
       {
         label: "Pitch Deck",
         path: "",
+        link: "/test-error",
       },
       {
         label: "Privacy Policy",
