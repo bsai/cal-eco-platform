@@ -18,6 +18,7 @@ import {
 } from "../constants/contract";
 import { useWeb3React } from "@web3-react/core";
 
+const INFURA_KEY = process.env.REACT_APP_INFURA_KEY || "";
 type MetamaskContextType = {
   errorMessage: null | string;
   setErrorMessage: Dispatch<SetStateAction<string | null>>;
@@ -77,12 +78,12 @@ const MetmaskContextProvider: React.FC<{
       try {
         // Create ethers providers for contract interactions
         const httpProvider = new ethers.providers.JsonRpcProvider(
-          "https://polygon-mumbai.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"
+          `https://polygon-mumbai.infura.io/v3/${INFURA_KEY}`
         );
         
         // Create WebSocket provider for socket connections
         const wsProvider = new ethers.providers.WebSocketProvider(
-          "wss://polygon-mumbai.infura.io/ws/v3/9aa3d95b3bc440fa88ea12eaa4456161"
+          `wss://polygon-mumbai.infura.io/ws/v3/${INFURA_KEY}`
         );
         
         const eacContract = new ethers.Contract(
