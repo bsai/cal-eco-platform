@@ -7,6 +7,7 @@ const logger = require('./utils/logger');
 const socketService = require('./services/socket.service');
 const { routes } = require('./routes/routes');
 const errorMiddleware = require('./middleware/error.middleware');
+const apiLimiter = require('./middleware/rateLimiter.middleware');
 
 // Initialize mock data service (replaces database)
 require('./services/mockData.service');
@@ -36,11 +37,14 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// global rate limiter to all req
+app.use(apiLimiter);
+
 // Health check
 app.get('/', (req, res) => {
   res.json({ status: 'ok', message: 'Server is running' });
 });
-  
+
 // API routes
 app.use('/api', routes);
   
@@ -53,7 +57,7 @@ if (require.main === module) {
   server.listen(PORT, () => {
     logger.info(`Server listening on port ${PORT}`);
     logger.info(`Environment: ${config.nodeEnv}`);
-    });
+  });
 }
 
 module.exports = { app, server, io };
