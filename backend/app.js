@@ -17,13 +17,15 @@ require('./services/cron.service');
 
 const app = express();
 const server = http.createServer(app);
-
+const CORS_CONFIG = {
+  origin: config.allowOrigins, 
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+  credentials: true,
+  allowedHeaders: ['Content-Type', 'Authorization']
+};
 // Initialize Socket.IO
 const io = require('socket.io')(server, {
-  cors: {
-    origin: '*',
-    methods: ['GET', 'POST'],
-  },
+  cors: CORS_CONFIG,
 });
 
 socketService.initializeSocket(io);
@@ -33,7 +35,7 @@ dotenv.config({ path: `${config.nodeEnv}.env` });
 app.set('env', config.nodeEnv);
 
 // Middleware
-app.use(cors());
+app.use(cors(CORS_CONFIG));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

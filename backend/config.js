@@ -11,6 +11,7 @@ module.exports = {
   nodeEnv: process.env.NODE_ENV || 'development',
   blockedAddresses: (process.env.BLOCKED_ADDRESSES || '0x91db0dbd7ee9ea405852f65f044739c90cd076d5').split(',').filter(Boolean),
   
+  allowOrigins: (process.env.ALLOW_ORIGINS || 'http://localhost:2468').split(',').filter(Boolean),
   // rate limite config
   rateLimiter: {
     duration: parseInt(process.env.RATE_LIMIT_DURATION || '900000', 10), // 15 minutes (in milliseconds)
