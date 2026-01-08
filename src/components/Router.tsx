@@ -12,6 +12,7 @@ import PublicRoutes from "./helper/PublicRoutes.tsx";
 import PrivateRoutes from "./helper/PrivateRoutes";
 import Profile from "./profile/Profile";
 import EditProfile from "./profile/EditProfile";
+import Fallback from "./Fallback";
 
 const Layout = () => {
   return (
@@ -27,43 +28,44 @@ export function Routers() {
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route path="/prediction" element={<Dashboard />} />
-        <Route path="/dashboard" element={<ExchangeDashboard />} />
+      <Route path="/prediction" element={<Dashboard />} />
+      <Route path="/dashboard" element={<ExchangeDashboard />} />
 
-        <Route
-          path="/reset-password"
-          element={
-            <PublicRoutes>
-              <ResetPassword />
-            </PublicRoutes>
-          }
-        />
-        <Route
-          path="/google/login"
-          element={
-            <PrivateRoutes>
-              <GoogleLogin />
-            </PrivateRoutes>
-          }
-        />
-        <Route
-          path="/profile"
-          element={
-            <PrivateRoutes>
-              <Profile />
-            </PrivateRoutes>
-          }
-        />
-        <Route
-          path="/edit-profile"
-          element={
-            <PrivateRoutes>
-              <EditProfile />
-            </PrivateRoutes>
-          }
-        />
-        <Route path="/google/redirect" element={<GoogleRedirect />} />
-        <Route path="/" element={<Navigate to="/dashboard" />} />
+      <Route
+        path="/reset-password"
+        element={
+        <PublicRoutes>
+          <ResetPassword />
+        </PublicRoutes>
+        }
+      />
+      <Route
+        path="/google/login"
+        element={
+        <PrivateRoutes>
+          <GoogleLogin />
+        </PrivateRoutes>
+        }
+      />
+      <Route
+        path="/profile"
+        element={
+        <PrivateRoutes>
+          <Profile />
+        </PrivateRoutes>
+        }
+      />
+      <Route
+        path="/edit-profile"
+        element={
+        <PrivateRoutes>
+          <EditProfile />
+        </PrivateRoutes>
+        }
+      />
+      <Route path="/google/redirect" element={<GoogleRedirect />} />
+      <Route path="/" element={<Navigate to="/dashboard" />} />
+      <Route path="*" element={<Fallback />} />
       </Route>
     </Routes>
   );

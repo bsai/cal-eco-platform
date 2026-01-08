@@ -108,7 +108,7 @@ const Papers = () => {
       {
         label: "LitePaper",
         path: "",
-        link: "https://lumanagi.com/wp-content/uploads/2023/01/Lumanagi-Lite-Paper-v3-1.pdf",
+        link: "/Lumanagi-Lite-Paper-v3-1.pdf",
       },
       {
         label: "Pitch Deck",
