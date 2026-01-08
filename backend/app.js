@@ -36,7 +36,7 @@ app.set('env', config.nodeEnv);
 
 // Middleware
 app.use(cors(CORS_CONFIG));
-app.use(express.json());
+app.use(express.json({ limit: config.payloadSizeLimit }));
 app.use(express.urlencoded({ extended: true }));
 
 // global rate limiter to all req
